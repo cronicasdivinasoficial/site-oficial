@@ -1,0 +1,203 @@
+<!DOCTYPE html> 
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crônicas Divinas: A Magia Proibida</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: linear-gradient(180deg, #1b1035, #0c0f2b);
+      height: 100%;
+      font-family: "Poppins", sans-serif;
+      color: #eae2ff;
+    }
+
+    canvas { display: block; }
+
+    .mist {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: radial-gradient(circle, rgba(180,180,255,0.06) 0%, transparent 70%);
+      animation: mistMove 30s infinite linear;
+      pointer-events: none;
+      filter: blur(60px);
+    }
+
+    @keyframes mistMove {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(50px, 50px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .quote {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(230, 230, 255, 0.8);
+      font-size: 1.2rem;
+      text-align: center;
+      max-width: 80%;
+      animation: fadeIn 6s ease-in-out;
+    }
+
+    @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+    .magic-btn {
+      position: absolute;
+      top: 10%;
+      right: 10%;
+      background: rgba(120, 80, 200, 0.3);
+      color: #e0d8ff;
+      border: 1px solid rgba(200,200,255,0.3);
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    .magic-btn:hover {
+      background: rgba(180, 130, 255, 0.5);
+      box-shadow: 0 0 15px rgba(150,100,255,0.7);
+    }
+
+    .ending {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #0c0f2b 40%, #050510 100%);
+      color: #f3e9ff;
+      text-align: center;
+      padding: 60px 10%;
+      box-sizing: border-box;
+      animation: fadeIn 3s ease-in-out forwards;
+      overflow-y: auto;
+    }
+
+    .ending h1 { font-size: 2.5rem; margin-bottom: 20px; color: #d2bfff; }
+    .ending p { font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px; }
+
+    .image-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .ending img {
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(160, 120, 255, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .ending img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(190, 150, 255, 0.8);
+    }
+
+    .principal { width: 380px; height: auto; }
+
+    .logo-container { display: flex; flex-direction: column; align-items: center; }
+    .logo { width: 180px; height: auto; margin-top: 8px; }
+
+    .logo-text {
+      font-size: 1rem;
+      color: #d2bfff;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 0 6px rgba(190, 150, 255, 0.8);
+      animation: pulseGlow 2.5s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0% { text-shadow: 0 0 6px rgba(190,150,255,0.8), 0 0 10px rgba(180,130,255,0.6); color: #e5d4ff; }
+      50% { text-shadow: 0 0 18px rgba(220,190,255,1), 0 0 25px rgba(180,130,255,0.8); color: #ffffff; }
+      100% { text-shadow: 0 0 6px rgba(190,150,255,0.8), 0 0 10px rgba(180,130,255,0.6); color: #e5d4ff; }
+    }
+
+    .ending small { display: block; font-size: 0.9rem; color: #cbb3ff; margin-top: 25px; }
+  </style>
+</head>
+
+<body>
+  <div class="mist"></div>
+  <button class="magic-btn" onclick="invokeMagic()">Invocar magia ✨</button>
+  <div class="quote" id="quote">"O vento sussurra nomes esquecidos entre as árvores..."</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+
+  <div class="ending" id="ending">
+    <h1>CRÔNICAS DIVINAS: A Magia Proibida</h1>
+    <p>
+      No reino de <b>Alcalour</b>, onde a beleza esconde perigos e a magia carrega um preço, duas vidas estão prestes a mudar o destino de todos.<br><br>
+      <b>Morgana</b>, a princesa dividida entre o dever e a sede por liberdade, busca o verdadeiro alcance de seu poder.<br>
+      <b>Jayce</b>, filho de um simples guarda, arrisca tudo ao explorar a necromancia proibida para desvendar o mistério da morte de sua mãe.<br><br>
+      Entre florestas enigmáticas, segredos antigos e alianças frágeis, seus caminhos se cruzam — e a verdade que descobrirem poderá salvar ou condenar os sete reinos.
+    </p>
+
+    <div class="image-row">
+      <a href="https://www.wattpad.com/story/219626679-cr%C3%B4nicas-divinas-a-magia-proibida" target="_blank">
+        <img src="https://i.imgur.com/S0C55Ix.png" alt="Capa Crônicas Divinas" class="principal">
+      </a>
+
+      <div class="logo-container">
+        <div class="logo-text">ESCANEIE-ME</div>
+        <img src="https://i.imgur.com/ZxnPfDQ.png" alt="Logo da Saga" class="logo">
+      </div>
+    </div>
+
+    <small>"Alguns segredos não foram feitos para serem descobertos... mas eles decidiram desafiar o destino."</small>
+  </div>
+
+  <script>
+    let fireflies = [], stars = [], magicActive = false;
+
+    function setup() {
+      createCanvas(windowWidth, windowHeight);
+      noStroke();
+      for (let i=0;i<80;i++) stars.push({x:random(width),y:random(height/2),s:random(1,3)});
+      for (let i=0;i<20;i++) fireflies.push({x:random(width),y:random(height),s:random(3,6),t:random(TWO_PI)});
+    }
+
+    function draw() {
+      background(15,10,30,60);
+      for (let s of stars) { fill(200+random(-20,20),200+random(-20,20),255,random(120,220)); ellipse(s.x,s.y,s.s); }
+      for (let f of fireflies) {
+        let glow=sin(f.t*2)*120+180;
+        fill(180,glow,255,200);
+        ellipse(f.x,f.y,f.s);
+        f.x+=sin(f.t)*0.5;
+        f.y+=cos(f.t)*0.5;
+        f.t+=0.02;
+      }
+      if(magicActive){ push(); fill(160,130,255,40); rect(0,0,width,height); pop(); }
+    }
+
+    function windowResized(){ resizeCanvas(windowWidth, windowHeight); }
+
+    function invokeMagic(){
+      magicActive=true;
+      document.getElementById("quote").style.display="none";
+      document.querySelector(".magic-btn").style.display="none";
+      setTimeout(()=>{
+        document.querySelector("canvas").style.display="none";
+        document.querySelector(".mist").style.display="none";
+        document.getElementById("ending").style.display="block";
+      },1000);
+    }
+  </script>
+</body>
+</html>
